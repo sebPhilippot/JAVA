@@ -1,6 +1,6 @@
 # Exceptions
 
-Cet exemple met en pratique le mécanisme des exceptions. Une [exception](https://docs.oracle.com/javase/tutorial/essential/exceptions/definition.html) est un évènement qui survient au cours de l'activité d'un programme et en perturbe l'exécution. Quand un tel évènement se produit dans un programme Java, la méthode en cours d'exécution crée un objet qui encapsule la description de l'erreur (son type, l'état du programme au moment où elle s'est produite, ...). Cet objet est ensuite confié au système qui cherche parmi les objets impliqués au moment de l'erreur un moyen de traiter cette exception : 
+Cet exemple met en pratique le mécanisme des exceptions. Une [exception](https://docs.oracle.com/javase/tutorial/essential/exceptions/definition.html) est un évènement qui survient au cours de l'activité d'un programme et en perturbe l'exécution. Quand un tel évènement se produit dans un programme Java, la méthode en cours d'exécution crée un objet qui encapsule la description de l'erreur (son type, l'état du programme au moment où elle s'est produite...). Cet objet est ensuite confié au système qui cherche parmi les objets impliqués au moment de l'erreur un moyen de traiter cette exception : 
 - L'exception est présentée à la méthode appelante qui a la possibilité de la "capturer" si elle est en mesure de résoudre le problème qui l'a causée. 
 - À défaut, l'exception est présentée à la méthode de niveau supérieur, et ainsi de suite jusqu'au `main` du logiciel. 
 - Si ce dernier ne capture pas l'exception, le programme affiche une erreur et l'exécution se termine.
@@ -35,12 +35,12 @@ throw new UnsupportedOperationException("Unknown mode: " + mode);
 ## Capturer une exception
 Afin de pouvoir capturer une exception levée par un appel de méthode, deux choses sont nécessaires :
 - placer cet appel de méthode dans un bloc `try`
-- déclarer un traitment pour cette exception dans un bloc `catch`
+- déclarer un traitement pour cette exception dans un bloc `catch`
 
 Dans la classe *Caesar*, la récupération des paramètres peut lever une exception si le tableau `args` contient moins de 2 éléments. Nous allons capturer cette exception pour afficher un message d'erreur plus explicite à l'utilisateur.
 
 ### Bloc try
-Les instructions faisant référence aux cases 1 et 2 du tableau `args` sont susceptibles de lever une `ArrayIndexOutOfBoundsException` si le tableau contient moins de 2 éléments. Afin de pouvoir rattraper cette exception, nous allons placer ces lignes de code dans un bloc `try` :
+Les instructions faisant référence aux cases 0 et 1 du tableau `args` sont susceptibles de lever une `ArrayIndexOutOfBoundsException` si le tableau contient moins de 2 éléments. Afin de pouvoir rattraper cette exception, nous allons placer ces lignes de code dans un bloc `try` :
 
 ```
 try
