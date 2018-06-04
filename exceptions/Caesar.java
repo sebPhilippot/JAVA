@@ -8,7 +8,7 @@ public class Caesar
 			mode = args[0];
 			message = args[1];
 		}
-		catch (ArrayIndexOutOfBoundsException e)
+		catch (IndexOutOfBoundsException e)
 		{
 			System.err.println("Usage: Caesar {encode|decode} message");
 			return;
