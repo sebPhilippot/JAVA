@@ -1,0 +1,72 @@
+# Exceptions
+
+Cet exemple met en pratique le mécanisme des exceptions. Une [exception](https://docs.oracle.com/javase/tutorial/essential/exceptions/definition.html) est un évènement qui survient au cours de l'activité d'un programme et en perturbe l'exécution. Quand un tel évènement se produit dans un programme Java, la méthode en cours d'exécution crée un objet qui encapsule la description de l'erreur (son type, l'état du programme au moment où elle s'est produite, ...). Cet objet est ensuite confié au système qui cherche parmi les objets impliqués au moment de l'erreur un moyen de traiter cette exception : 
+- L'exception est présentée à la méthode appelante qui a la possibilité de la "capturer" si elle est en mesure de résoudre le problème qui l'a causée. 
+- À défaut, l'exception est présentée à la méthode de niveau supérieur, et ainsi de suite jusqu'au `main` du logiciel. 
+- Si ce dernier ne capture pas l'exception, le programme affiche une erreur et l'exécution se termine.
+
+![Schéma illustrant le parcours d'une exception de méthode en méthode vers le bas de la pile d'appel jusqu'à ce qu'elle soit capturée](https://docs.oracle.com/javase/tutorial/figures/essential/exceptions-errorOccurs.gif)
+
+## Lever une exception
+Lorsque la situation ne permet pas au programme de poursuivre le cours normal de son exécution, il est possible de lever une exception pour indiquer aux méthodes appelantes que le traitment s'est terminé de façon anormale. Cela se fait à l'aide de l'instruction `throw`.
+
+Dans le cas de la classe *Caesar* si l'utilisateur spécifie un autre mode que _encode_ ou _decode_ il est impossible de continuer; nous allons donc lever une exception. Pour cela on crée un objet contenant le type de l'erreur et le contexte d'exécution au moent où elle s'est produite :
+
+```
+RuntimeException e = new UnsupportedOperationException("Unknown mode: " + mode);
+``` 
+
+Le message d'erreur passé en paramètre du constructeur permet de joindre des informations complémentaires à l'exception.
+
+Enfin on utilise l'instruction `throw` pour confier cette exception au système :
+
+```
+throw e;
+```
+
+L'exécution de la méthode est interrompue et l'exception parcourt la pile d'appel jusqu'à ce qu'elle soit capturée (voir ci-dessous).
+
+Note : Ces deux étapes (création et émission de l'exception) sont généralement combinées en une seule ligne de code :
+
+```
+throw new UnsupportedOperationException("Unknown mode: " + mode);
+```
+
+## Capturer une exception
+Afin de pouvoir capturer une exception levée par un appel de méthode, deux choses sont nécessaires :
+- placer cet appel de méthode dans un bloc `try`
+- déclarer un traitment pour cette exception dans un bloc `catch`
+
+Dans la classe *Caesar*, la récupération des paramètres peut lever une exception si le tableau `args` contient moins de 2 éléments. Nous allons capturer cette exception pour afficher un message d'erreur plus explicite à l'utilisateur.
+
+### Bloc try
+Les instructions faisant référence aux cases 1 et 2 du tableau `args` sont susceptibles de lever une `ArrayIndexOutOfBoundsException` si le tableau contient moins de 2 éléments. Afin de pouvoir rattraper cette exception, nous allons placer ces lignes de code dans un bloc `try` :
+
+```
+try
+{
+	mode = args[0];
+	message = args[1];
+}
+```
+
+Si une exception survient dans un bloc `try`, le système cherchera un bloc `catch` compatible avec le type de l'exception avant de la tranférer à la méthode de niveau supérieur.
+
+### Bloc catch
+À la suite du bloc `try`, il faut déclarer dans un bloc `catch` le traitement à effectuer en cas d'exception :
+
+```
+catch (IndexOutOfBoundsException e)
+{
+	System.err.println("Usage: Caesar {encode|decode} message");
+	return;
+}
+```
+
+La classe [ArrayIndexOutOfBoundsException](https://docs.oracle.com/javase/7/docs/api/java/lang/ArrayIndexOutOfBoundsException.html) est une sous-classe des exceptions suivantes :
+- java.lang.Exception
+- java.lang.RuntimeException
+- java.lang.IndexOutOfBoundsException
+
+Elle sera donc capturée par tout bloc `catch` visant la classe `ArrayIndexOutOfBoundsException` ou l'un des 3 supertypes ci-dessus : en effet un bloc `catch` capture également toutes les classes filles de l'exception spécifiée.
+
