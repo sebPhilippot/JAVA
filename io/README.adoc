@@ -19,7 +19,7 @@ Cela permet d'afficher une chaîne de caractères dans la console de l'utilisate
 
 NOTE: La méthode `println` est https://fr.wikipedia.org/wiki/Surcharge_(programmation_informatique)[polymorphe] et possède une variante pour chaque type primitif, une pour String et une pour Object. Ainsi n'importe quelle variable peut être passée à `System.out.println` pour voir son contenu affiché dans la console.
 
-NOTE: Bien qu'elle permette d'afficher le contenu d'une variable en console, l'utilisation de `println` à des fins de déboggage n'est pas conseillée. On lui préfèrera un logger, plus adaté à ce cas d'usage.
+NOTE: Bien qu'elle permette d'afficher le contenu d'une variable en console, l'utilisation de `println` à des fins de déboggage n'est pas conseillée. On lui préfèrera un https://docs.oracle.com/javase/7/docs/api/java/util/logging/Logger.html[logger], plus adaté à ce cas d'usage.
 
 Pour les cas où l'on ne souhaite pas de retour à la ligne, il faut utiliser `System.out.print`.
 
