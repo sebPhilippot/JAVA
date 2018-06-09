@@ -1,0 +1,75 @@
+= Interaction avec l'utilisateur en ligne de commande
+
+Cet exemple met en pratique les mécanismes de communication en ligne de commande en Java. Il s'agit d'une calculatrice basique qui fonctionne comme ceci :
+
+- lancez le programme via la commande `java Calc`
+- entrez votre opération en séparant chaque élément par des espaces
+- appuyez sur Entrée pour obtenir le résultat de l'opération
+
+== Afficher du texte
+
+Le moyen le plus utilisé d'afficher du texte en Java est la méthode https://docs.oracle.com/javase/7/docs/api/java/io/PrintStream.html#println(java.lang.String)[println] de l'objet https://docs.oracle.com/javase/7/docs/api/java/lang/System.html#out[System.out] :
+
+[source, java]
+----
+System.out.println("Bonjour à tous !");
+----
+
+Cela permet d'afficher une chaîne de caractères dans la console de l'utilisateur. Un retour à la ligne est automatiquement ajouté à la fin.
+
+NOTE: La méthode `println` est https://fr.wikipedia.org/wiki/Surcharge_(programmation_informatique)[polymorphe] et possède une variante pour chaque type primitif, une pour String et une pour Object. Ainsi n'importe quelle variable peut être passée à `System.out.println` pour voir son contenu affiché dans la console.
+
+Pour les cas où l'on ne souhaite pas de retour à la ligne, il faut utiliser `System.out.print`.
+
+=== Exemple
+Au démarrage de la calculatrice, on affiche un message de bienvenue sur deux lignes :
+
+[source, java]
+----
+System.out.println("Java Calculator");
+System.out.println("Type Ctrl-C to quit.");
+----
+
+puis on affiche l'invite de commande. Comme on ne souhaite pas que le curseur revienne à la ligne, on utilise la méthode `print` au lieu de `println` :
+
+[source, java]
+----
+System.out.print("> ");
+----
+
+=== Lire depuis la console
+
+La lecture des informations saisies au clavier par l'utilisateur se fait généralement à l'aide de la classe https://docs.oracle.com/javase/7/docs/api/java/util/Scanner.html[Scanner]. Cette classe permet de découper un flux de données en éléments afin de les ranger dans des variables. Par exemple si l'utilisateur saisit :
+
+____
+23 F Toulouse
+____
+
+On peut récupérer ces informations dans des variables séparées à l'aide du code suivant :
+
+[source, java]
+----
+Scanner stdin = new Scanner(System.in);
+int age = nextInt();
+String sexe = next();
+String ville = next();
+----
+
+Le paramètre passé au constructeur de la classe `Scanner` permet d'indiquer la source de données. Généralement, il s'agira de `System.in`.
+
+=== Exemple
+Après avoir affiché l'invite de commande, la calculatrice attend une opération au format `op1 {+|-|*|/} op2` (par exemple : `3 * 5`). La saisie de l'utilisateur est séparée en variables par le code suivant :
+
+[source, java]
+----
+// On initialise un Scanner sur l'entrée standard (System.in)
+Scanner stdin = new Scanner(System.in);
+// Le premier nombre va dans la variable 'operand1'
+operand1 = stdin.nextDouble();
+// L'espace sert de séparateur et sera ignoré.
+// Le symbole de l'opération va dans la variable 'operator'
+operator = stdin.next();
+// Le deuxième nombre va dans la variable 'operand2'
+operand2 = stdin.nextDouble();
+----
+
