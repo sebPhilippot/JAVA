@@ -1,7 +1,7 @@
 = Java Cookbook
 
 == Présentation
-Ce projet permet d'avoir des cas d'usages sur lesquels s'inspirer pour vos futurs projets. Les différentes classes comportent des commentaires décrivant chaque méthodes de façon détaillés.
+Ce projet permet d'avoir des cas d'usages sur lesquels se baser pour vos futurs projets. Les différentes classes comportent des commentaires décrivant chaque méthode de façon détaillée.
 
 == Cas d'usages
 * Les entrées/Sorties en JAVA
