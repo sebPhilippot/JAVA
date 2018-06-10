@@ -1,2 +1,45 @@
 = Java Cookbook
 
+== Présentation
+Ce projet permet d'avoir des cas d'usages sur lesquels s'inspirer pour vos futurs projets. Les différentes classes comportent des commentaires décrivant chaque méthodes de façon détaillés.
+
+== Cas d'usages
+* Les entrées/Sorties en JAVA
+** Afficher un message dans la console
+** Saisir des données en mode console
+** Ecrire / lire dans un fichier texte
+** Ecrire / lire dans un fichier XML
+** Ecrire / lire un fichier properties
+* Les exceptions
+** Propager une exception
+** Lever une exception
+** Récupérer une exception
+** Ecrire un fichier de log
+* Les collections
+** Créer une collection d'objet
+** Ajouter une élément dans une liste
+
+== Compiler les exemples
+Pour compiler les exemples, exécuter la commande suivante depuis la racine du projet :
+
+```
+./make.sh
+```
+
+Les classes Java compilées se trouveront dans le dossier `bin`
+
+== Exécuter les exemples
+Placez vous dans le dossier `bin` précédemmment créé par `make.sh` et suivez les instructions contenues dans le README de l'exemple que vous souhaitez exécuter.
+
+Pour exécuter l'exemple `Caesar`, entrez la commande suivante :
+
+```
+java com.example.Caesar decode 'Cpokpvs!b!upvt!"'
+```
+
+Pour exécuter l'exemple `Shuffle`, entrez la commande suivante :
+
+```
+java com.example.Shuffle vous qui entrez dans mon coeur ne faites pas attention au désordre
+```
+
