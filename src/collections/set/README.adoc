@@ -1,0 +1,95 @@
+= Ensembles
+
+*Uniq* est un exemple d'utilisation de l'interface `Set`. Il s'agit d'un programme qui affiche ses arguments en supprimant les doublons. Il s'utilise comme ceci :
+
+```
+java com.example.Uniq e1 e2 [e3...]
+```
+
+Exemple :
+
+```
+java com.example.Uniq if it is to be it is up to me
+```
+
+== Créer un ensemble
+
+Un ensemble est une collection d'objets distincts entre eux. En Java, il s'agit d'une instance d'une classe qui implémente l'interface `java.util.Set`. L'implémentation la plus utilisée de cette interface est https://docs.oracle.com/javase/7/docs/api/java/util/HashSet.html[HashSet]. Si l'ordre des éléments est important, on peut alternativement utiliser https://docs.oracle.com/javase/7/docs/api/java/util/LinkedHashSet.html[LinkedHashSet] qui garantit que les éléments sont parcourus dans l'ordre dans lequel ils ont été ajoutés.
+
+Un ensemble s'instancie comme ceci :
+
+[source, java]
+----
+Set<String> argSet = new HashSet<>();
+----
+
+NOTE: L'interface `Set`, comme toutes les collections Java, est https://docs.oracle.com/javase/tutorial/java/generics/index.html[générique] : il est possible (et fortement conseillé) de spécifier le type d'objet contenu dans la collection (`String` dans l'exemple ci-dessus). Cela permet au compilateur de vérifier que les objets ajoutés sont compatibles avec le type de la collection.
+
+Le constructeur par défaut intialise un ensemble vide. Il faut ensuite ajouter les éléments à l'aide des méthodes `add` et `addAll` :
+
+[source, java]
+----
+for(String s : args) {
+	argSet.add(s);
+}
+----
+
+Il est également possible de passer une autre collection en paramètre au constructeur pour initialiser l'ensemble :
+
+[source, java]
+----
+Set<String> argSet = new HashSet<>(otherCollection);
+----
+
+== Parcourir un ensemble
+
+Au fil des versions du langage ont été introduits plusieurs moyens de parcourir un ensemble :
+
+=== Stream
+
+Cette méthode est disponible à partir de la version 1.8 du langage Java. On crée un https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html[Stream] à partir de l'ensemble et on lui applique les transformations voulues : `map`, `filter`, `collect`...
+
+[source, java]
+----
+// On crée un stream à partir de l'ensemble
+argSet.stream().
+	// On appelle System.out.print sur chaque élément pour l'afficher
+	forEach(e -> System.out.print(e + " "));
+----
+
+Il s'agit de la façon recommandée de parcourir un ensemble dans les projets Java récents s'exécutant dans des environnements modernes (JVM version 1.8 et supérieures); elle permet la lecture et la manipulation en parallèle des éléments de l'ensemble. S'il est nécessaire de modifier structurellement l'ensemble en cours d'itération (supprimer des éléments tout en parcourant l'ensemble), il faut utiliser un itérateur (voir ci-dessous).
+
+=== Boucle for implicite
+Cette méthode est disponible à partir de la version 1.5 du langage. On parcourt l'ensemble élément par élément à l'aide d'une _enhanced for loop_ :
+
+[source, java]
+----
+// Dans une 'enhanced for loop', l'incrément de boucle prend successivement la valeur de chaque élément de l'ensemble
+for(String s : argSet)
+{
+	// On appelle System.out.print sur chaque élément pour l'afficher
+	System.out.print(s + " ");
+}
+----
+
+Comme les streams, la boucle for implicite permet l'accès en lecture à l'ensemble. Pour supprimer des éléments de l'ensemble en cours d'itération, il faut utiliser un itérateur (voir ci-dessous).
+
+=== Itérateur
+Cette méthode est disponible depuis la version 1.2 du langage. On crée un https://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html[Iterator] afin de parcourir l'ensemble élément par élément :
+
+
+[source, java]
+----
+// On crée un itérateur sur l'ensemble
+Iterator<String> argIterator = argSet.iterator();
+// On boucle tant que l'itérateur n'a pas parcouru tout l'ensemble
+while (argIterator.hasNext())
+{
+	// On appelle System.out.print sur chaque élément pour l'afficher
+	String s = argIterator.next();
+	System.out.print(s + " ");
+}
+----
+
+Cette méthode possède l'avantage de permettre la suppression d'éléments au sein de la boucle grâce à la méthode `remove`. Contrairement aux listes, les ensembles ne gèrent pas l'ajout d'éléments via un itérateur.
+

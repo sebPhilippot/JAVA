@@ -1,0 +1,108 @@
+= Listes
+
+*Shuffle* est un exemple d'utilisation de l'interface `List`. Il s'agit d'un programme qui affiche ses arguments dans un ordre aléatoire; il s'utilise comme ceci :
+
+```
+java com.example.Shuffle e1 e2 [e3...]
+```
+
+Exemple pour tirer un nombre au hasard :
+
+```
+java com.example.Shuffle 1 2 3 4 5 6
+```
+
+et ne conserver que le dernier chiffre du résultat.
+
+== Créer une liste
+
+En Java, une liste est une instance d'une classe qui implémente l'interface `java.util.List`. Les implémentations les plus utilisées sont https://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html[ArrayList] et https://docs.oracle.com/javase/7/docs/api/java/util/LinkedList.html[LinkedList] :
+- ArrayList dispose d'une implémentation performante des méthodes `get`, `set` et `add`
+- LinkedList implémente également l'interface https://docs.oracle.com/javase/7/docs/api/java/util/Deque.html[Deque] : elle est à préférer lorsque les opérations de _stack_ et de _queue_ sont utiles : `addFirst`, `getLast`...
+
+Une liste s'instancie comme ceci :
+
+[source, java]
+----
+List<String> argList = new ArrayList<>();
+----
+
+NOTE: L'interface `List`, comme toutes les collections Java, est https://docs.oracle.com/javase/tutorial/java/generics/index.html[générique] : il est possible (et fortement conseillé) de spécifier le type d'objet contenu dans la collection (`String` dans l'exemple ci-dessus). Cela permet au compilateur de vérifier que les objets ajoutés sont compatibles avec le type de la collection.
+
+Le constructeur par défaut intialise une liste vide. Il faut ensuite ajouter des éléments à l'aide des méthodes `add` et `addAll` :
+
+[source, java]
+----
+for(String s : args)
+{
+	argList.add(s);
+}
+----
+
+Il est également possible de passer une autre collection en paramètre au constructeur pour initialiser la liste :
+
+[source, java]
+----
+List<String> argList = new ArrayList<>(otherCollection);
+----
+
+== Convertir un tableau en liste
+
+Lorsqu'on souhaite convertir un tableau en liste, il est possible d'utiliser la méthode statique `asList` de la classe https://docs.oracle.com/javase/7/docs/api/java/util/Arrays.html[Arrays] :
+
+[source, java]
+----
+List<String> argList = Arrays.asList(args);
+----
+
+== Parcourir une liste
+
+Au fil des versions du langage ont été introduits plusieurs moyens de parcourir une liste :
+
+=== Stream
+Cette méthode est disponible à partir de la version 1.8 du langage Java. On crée un https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html[Stream] à partir de la liste et on lui applique les transformations voulues : `map`, `filter`, `collect`...
+
+[source, java]
+----
+// On crée un Stream à partir de la liste
+argList.stream().
+	// On appelle System.out.print sur chaque élément pour l'afficher
+	forEach(e -> System.out.print(e + " "));
+----
+
+Il s'agit de la façon recommandée de parcourir une liste dans les projets Java récents s'exécutant dans des environnements modernes (JVM version 1.8 et supérieures); elle permet la lecture et la manipulation en parallèle des éléments de la liste. S'il est nécessaire de modifier structurellement la liste en cours d'itération (supprimer ou ajouter des éléments tout en parcourant la liste), il faut utiliser un itérateur (voir ci-dessous).
+
+=== Boucle for implicite
+Cette méthode est disponible à partir de la version 1.5 du langage. On parcourt la liste élément par élément à l'aide d'une _enhanced for loop_ :
+
+[source, java]
+----
+// Dans une 'enhanced for loop', l'incrément de boucle prend successivement la valeur de chaque élément de la liste
+for(String s : argList)
+{
+	// On appelle System.out.print sur chaque élément pour l'afficher
+	System.out.print(s + " ");
+}
+----
+
+Comme les streams, la boucle for implicite permet l'accès en lecture à la liste. Pour ajouter ou supprimer des éléments tout en parcourant la liste, il faut utiliser un itérateur (voir ci-dessous).
+
+=== Itérateur
+Cette méthode est disponible depuis la version 1.2 du langage. On crée un https://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html[Iterator] afin de parcourir la liste élément par élément :
+
+
+[source, java]
+----
+// On crée un itérateur sur la liste
+Iterator<String> argIterator = argList.iterator();
+// On boucle tant que l'itérateur n'a pas atteint la fin de la liste
+while (argIterator.hasNext())
+{
+	// On récupère l'élément suivant à l'aide de la méthode 'next'
+	String s = argIterator.next();
+	// On appelle System.out.print sur chaque élément pour l'afficher
+	System.out.print(s + " ");
+}
+----
+
+Cette méthode possède l'avantage de permettre la suppression d'éléments au sein de la boucle grâce à la méthode `remove`. Pour certaines implémentations de `List` il existe un itérateur permettant également l'ajout d'éléments : https://docs.oracle.com/javase/8/docs/api/java/util/ListIterator.html[ListIterator].

@@ -1,0 +1,90 @@
+= Dictionnaires
+
+*Freq* est un exemple d'utilisation de l'interface `Map`. Il s'agit d'un programme qui compte le nombre d'occurences de chaque mot dans la phrase passée en paramètre. Il s'utilise comme ceci :
+
+```
+java com.example.Freq e1 e2 [e3...]
+```
+
+Exemple :
+
+```
+java com.example.Freq if it is to be it is up to me
+```
+
+== Créer un dictionnaire
+
+En Java, un dictionnaire est une instance d'une classe qui implémente l'interface `java.util.Map`. L'implémentation la plus utilisée de cette interface est https://docs.oracle.com/javase/7/docs/api/java/util/HashMap.html[HashMap]. Si l'ordre des clés est important, on peut alternativement utiliser https://docs.oracle.com/javase/7/docs/api/java/util/LinkedHashMap.html[LinkedHashMap] qui garantit que les clés sont parcourues dans l'ordre dans lequel elles ont été ajoutées.
+
+Un dictionnaire s'instancie comme ceci :
+
+[source, java]
+----
+Map<String, Integer> wordFrequencyMap = new HashMap<>();
+----
+
+== Lire et écrire dans un dictionnaire
+
+La lecture d'éléments depuis un dictionnaire se fait à l'aide de la méthode `get(K key)`. Si la clé passée en paramètre n'est pas définie, cette méthode renvoie `null`.
+
+L'ajout et la modification d'éléments d'un dictionnaire se fait avec la méthode `put(K key, V value)`. Si la clé existe déja, sa valeur est écrasée. Sinon, la clé est ajoutée au dictionnaire et associée à la valeur passée en second paramètre.
+
+=== Exemple
+
+Dans la classe `Freq`, pour chaque mot, on récupère la valeur associée et on l'incrémente de 1 :
+
+[source, java]
+----
+// On récupère le nombre d'occurences du mot 's' depuis le dictionnaire
+Integer frequency = wordFrequencyMap.get(s);
+// Si la 'map' renvoie 'null', c'est que le mot n'y était pas.
+if (frequency == null)
+{
+	// Dans ce cas c'est la première occurence, et on stockera une valeur de 1.
+	frequency = 1;
+}
+else
+{
+	// Sinon, on ajoute 1 au nombre d'occurences renvoyé par le dictionnaire
+	frequency++;
+}
+// On stocke la nouvelle valeur dans le dictionnaire à l'aide de la méthode 'put'
+wordFrequencyMap.put(s, frequency);
+----
+
+== Parcourir un dictionnaire
+
+Un dictionnaire est composé d'un ensemble de clés, chacun associé à une valeur. En fonction du traitement que l'on souhaite appliquer aux données qu'il contient, il existe plusieurs manières de parcourir un dictionnaires.
+
+=== Clés seulement
+
+La méthode `keySet` permet d'obtenir sous forme de https://docs.oracle.com/javase/7/docs/api/java/util/Set.html[Set] l'ensemble des clés du dictionnaire. Dans le cas de notre programme, il s'agirait de l'ensemble (sans doublon) des mots passés en argument.
+
+L'ensemble des clés est un `Set` et se parcourt comme tel. Voir le programme `Uniq` pour plus d'informations sur la manipulation des ensembles en Java.
+
+=== Valeurs seulement
+
+La méthode `values` renvoie une https://docs.oracle.com/javase/7/docs/api/java/util/Collection.html[Collection] contenant l'ensemble des valeurs stockées dans le dictionnaire. Dans le cas de `Freq` il s'agirait d'une collection d'entiers, chacun correspondant au nombre d'occurrences d'un mot passé en argument.
+
+=== Clés et valeurs
+
+La méthode `entrySet` renvoie sous forme de https://docs.oracle.com/javase/7/docs/api/java/util/Set.html[Set] l'ensemble des relations stockées dans le dictionnaire. Chaque élément de ce `Set` est un objet de type https://docs.oracle.com/javase/7/docs/api/java/util/Map.Entry.html[Entry] contenant une clé et la valeur associée. C'est le seul moyen de parcourir une `Map` qui préserve les relations entre les clés et les valeurs.
+
+Dans le programme `Freq`, on parcourt le dictionnaire à l'aide de `entrySet` pour afficher les mots classés par nombre d'occurences :
+
+[source, java]
+----
+// On récupère l'ensemble des relations contenues dans le dictionnaire
+// On le stocke dans une liste pour pouvoir les ordonner
+entryList = new ArrayList<>(wordFrequencyMap.entrySet());
+// On classe les éléments de la plus petite valeur à la plus grande
+entryList.sort(Map.Entry.comparingByValue());
+
+// On parcourt la liste élément par élément pour l'afficher
+for(Entry e : entryList)
+{
+	System.out.println(e);
+}
+----
+
+
