@@ -7,16 +7,16 @@ Ce projet permet d'avoir des cas d'usages sur lesquels s'inspirer pour vos futur
 * Les entrées/Sorties en JAVA
 ** Afficher un message dans la console
 ** Saisir des données en mode console
-** Ecrire / lire dans un fichier texte
-** Ecrire / lire dans un fichier XML
-** Ecrire / lire un fichier properties
+** Ecrire et lire dans un fichier texte
+** Ecrire et lire dans un fichier XML
+** Ecrire et lire dans un fichier properties
 * Les exceptions
 ** Propager une exception
 ** Lever une exception
 ** Récupérer une exception
 ** Ecrire un fichier de log
 * Les collections
-** Créer une collection d'objet
+** Créer une collection d'objets
 ** Ajouter une élément dans une liste
 
 == Compiler les exemples
