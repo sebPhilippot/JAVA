@@ -17,7 +17,7 @@ Ce projet permet d'avoir des cas d'usages sur lesquels s'inspirer pour vos futur
 ** Ecrire un fichier de log
 * Les collections
 ** Créer une collection d'objets
-** Ajouter une élément dans une liste
+** Ajouter un élément dans une liste
 
 == Compiler les exemples
 Pour compiler les exemples, exécuter la commande suivante depuis la racine du projet :
