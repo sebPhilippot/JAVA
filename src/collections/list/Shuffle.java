@@ -26,8 +26,7 @@ public class Shuffle
 			// (depuis Java 1.8)
 			case STREAM:
 				argList.stream().
-					map(s -> s + " ").
-					forEach(e -> System.out.print(e));
+					forEach(e -> System.out.print(e + " "));
 			break;
 
 			// Méthode 2 : boucle 'for' implicite
@@ -35,8 +34,7 @@ public class Shuffle
 			case ENHANCED_FOR:
 				for(String s : argList)
 				{
-					s = s + " ";
-					System.out.print(s);
+					System.out.print(s + " ");
 				}
 			break;
 				
@@ -47,8 +45,7 @@ public class Shuffle
 				while (argIterator.hasNext())
 				{
 					String s = argIterator.next();
-					s = s + " ";
-					System.out.print(s);
+					System.out.print(s + " ");
 				}
 			break;
 		}
