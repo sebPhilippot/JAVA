@@ -17,7 +17,7 @@ public class Freq
 	public static void main(String[] args)
 	{
 		// Création d'une HashMap pour stocker les mots et compter leur fréquence
-		Map<String, Integer> wordFrequencyMap = new HashMap<String, Integer>();
+		Map<String, Integer> wordFrequencyMap = new HashMap<>();
 		
 		// Comptage des mots
 		for (String s : args)
