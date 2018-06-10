@@ -1,4 +1,11 @@
 = Listes
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
 
 *Shuffle* est un exemple d'utilisation de l'interface `List`. Il s'agit d'un programme qui affiche ses arguments dans un ordre aléatoire; il s'utilise comme ceci :
 

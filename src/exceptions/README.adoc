@@ -1,4 +1,11 @@
 = Exceptions
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
 
 Cet exemple met en pratique le mécanisme des exceptions. Une https://docs.oracle.com/javase/tutorial/essential/exceptions/definition.html[exception] est un évènement qui survient au cours de l'activité d'un programme et en perturbe l'exécution. Quand un tel évènement se produit dans un programme Java, la méthode en cours d'exécution crée un objet qui encapsule la description de l'erreur (son type, l'état du programme au moment où elle s'est produite...). Cet objet est ensuite confié au système qui cherche parmi les objets impliqués au moment de l'erreur un moyen de traiter cette exception : 
 

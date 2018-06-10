@@ -1,4 +1,11 @@
 = Ensembles
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
 
 *Uniq* est un exemple d'utilisation de l'interface `Set`. Il s'agit d'un programme qui affiche ses arguments en supprimant les doublons. Il s'utilise comme ceci :
 

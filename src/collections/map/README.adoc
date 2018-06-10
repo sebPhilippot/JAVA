@@ -1,4 +1,11 @@
 = Dictionnaires
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
 
 *Freq* est un exemple d'utilisation de l'interface `Map`. Il s'agit d'un programme qui compte le nombre d'occurences de chaque mot dans la phrase passée en paramètre. Il s'utilise comme ceci :
 
