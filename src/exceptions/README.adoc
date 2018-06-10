@@ -29,7 +29,7 @@ throw e;
 
 L'exécution de la méthode est interrompue et l'exception parcourt la pile d'appel jusqu'à ce qu'elle soit capturée (voir ci-dessous).
 
-NOTE: Ces deux étapes (création et émission de l'exception) sont généralement combinées en une seule ligne de code :
+Ces deux étapes (création et émission de l'exception) sont généralement combinées en une seule ligne de code :
 
 [source, java]
 ----
