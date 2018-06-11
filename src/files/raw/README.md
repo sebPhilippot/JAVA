@@ -67,21 +67,20 @@ while(!isEOF){
 
 ## Ecrire dans un fichier
 
-FileOutputStream hérite de OutputStream et est dédiée à l'écriture des fichiers de données binaires. Toutefois, cette classe est assez rudimentaire et contient des méthodes de lectures basiques.
-Il existe une autre classe avec des méthodes de lectures plus évoluées qui n'est pas spécifique aux fichiers mais pour tout type de flux binaire. Cette classe à un constructeur qui prend un objet de type FileInputStream en paramètre.
+FileOutputStream hérite de OutputStream et est dédiée à l'écriture des fichiers de données binaires.Comme dans le cas de la lecture, nous pouvons utiliser une classe DataOutputStream..
 
 `FileOutputStream fos=new FileOutputStream("fichier.dat");`
 
 Ici on attache un fichier à un l'objet _fos_
 
-`DataOutputStream dis=new DataInputStream(fis);`
+`DataOutputStream dos=new DataInputStream(fis);`
 
-Ici, on attache l'objet _dis_ au fichier par l'intermédiaire de _fis_. On bénéficie alors des méthodes de lectures plus évoluées de DataInputStream pour parcourir le fichier binaire.
+Ici, on attache l'objet _dos_ au fichier par l'intermédiaire de _fos_. On bénéficie alors des méthodes d'écritures plus évoluées de DataOutputStream pour écrire le fichier binaire.
 
-> Si on souhaite écrire dans un fichier à l'aide d'un buffer il faut passer par une classe BufferedInputStream. Cette classe prend un FileInputStream en paramètre.C'est ce buffer qui sera passé en paramètre du DataInputStream
-`new DataInputStream(new BufferedInputStream(new FileInputStream(dataFile)));`
+> Si on souhaite écrire dans un fichier à l'aide d'un buffer il faut passer par une classe BufferedOutputStream. Cette classe prend un FileOutputStream en paramètre.C'est ce buffer qui sera passé en paramètre du DataOutputStream
+`new DataOutputStream(new BufferedOutputStream(new FileOutputStream(dataFile)));`
 
-L'objet _dis_ a maintenant la capacité de parcourir le fichier jusqu'à la fin. Cette fin est déterminée par la levée d'une exception EOFException. 
+L'objet _dos_ a maintenant la capacité d'écrire le fichier.
 
 ```
 boolean isEOF=false;
