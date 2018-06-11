@@ -36,18 +36,18 @@ La lecture se fait avec les méthodes suivantes :
 | boolean | readBoolean() | Reads one input byte and returns true if that byte is nonzero, false if that byte is zero.
  |
 | byte | readByte() | Reads and returns one input byte. |
-| char | readChar()| Reads two input bytes and returns a char value. |
-| double | readDouble()|Reads eight input bytes and returns a double value. |
-| float | readFloat()| Reads four input bytes and returns a float value. |
+| char | readChar() | Reads two input bytes and returns a char value. |
+| double | readDouble() | Reads eight input bytes and returns a double value. |
+| float | readFloat() | Reads four input bytes and returns a float value. |
 | void | readFully(byte[] b) | Reads some bytes from an input stream and stores them into the buffer array b. |
-| void | readFully(byte[] b, int off, int len)| Reads len bytes from an input stream. |
-| int | readInt() |Reads four input bytes and returns an int value. |
-| long | readLong() |Reads eight input bytes and returns a long value. |
-| short | readShort() | Reads two input bytes and returns a short value.|
+| void | readFully(byte[] b, int off, int len) | Reads len bytes from an input stream. |
+| int | readInt() | Reads four input bytes and returns an int value. |
+| long | readLong() | Reads eight input bytes and returns a long value. |
+| short | readShort() | Reads two input bytes and returns a short value. |
 | int | readUnsignedByte() | Reads one input byte, zero-extends it to type int, and returns the result, which is therefore in the range 0 through 255. |
-| int | readUnsignedShort() | Reads two input bytes and returns an int value in the range 0 through 65535.|
-| String | readUTF() | Reads in a string that has been encoded using a modified UTF-8 format.|
-| int | skipBytes(int n) |Makes an attempt to skip over n bytes of data from the input stream, discarding the skipped bytes. |
+| int | readUnsignedShort() | Reads two input bytes and returns an int value in the range 0 through 65535. |
+| String | readUTF() | Reads in a string that has been encoded using a modified UTF-8 format. |
+| int | skipBytes(int n) | Makes an attempt to skip over n bytes of data from the input stream, discarding the skipped bytes. |
  
 ```
 boolean isEOF=false;
