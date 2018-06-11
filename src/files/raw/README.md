@@ -102,8 +102,8 @@ La lecture se fait avec les méthodes suivantes :
 | byte | 	size()  |Returns the current value of the counter written, the number of bytes written to this data output stream so far. |
 | char | write(byte[] b, int off, int len)  | Writes len bytes from the specified byte array starting at offset off to the underlying output stream. |
 | double | write(int b)  | Writes the specified byte (the low eight bits of the argument b) to the underlying output stream. |
-| float | writeBoolean(boolean v)  | Reads four input bytes and returns a float value. |
-| void | writeBytes(String s)  | Reads some bytes from an input stream and stores them into the buffer array b. |
+| float | writeBoolean(boolean v)  | Writes a boolean to the underlying output stream as a 1-byte value. |
+| void | writeBytes(String s)  | Writes out the string to the underlying output stream as a sequence of bytes. |
 | void | writeChar(int v)  | Reads len bytes from an input stream. |
 | int | writeChars(String s)  | Reads four input bytes and returns an int value. |
 | long | writeDouble(double v)  | Reads eight input bytes and returns a long value. |
