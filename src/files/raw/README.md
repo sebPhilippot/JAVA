@@ -98,20 +98,20 @@ La lecture se fait avec les méthodes suivantes :
 
 | Valeur de retour | Nom de la méthode | Description |
 | --- | --- | --- |
-| boolean | readBoolean() | Reads one input byte and returns true if that byte is nonzero, false if that byte is zero. |
-| byte | readByte() | Reads and returns one input byte. |
-| char | readChar() | Reads two input bytes and returns a char value. |
-| double | readDouble() | Reads eight input bytes and returns a double value. |
-| float | readFloat() | Reads four input bytes and returns a float value. |
-| void | readFully(byte[] b) | Reads some bytes from an input stream and stores them into the buffer array b. |
-| void | readFully(byte[] b, int off, int len) | Reads len bytes from an input stream. |
-| int | readInt() | Reads four input bytes and returns an int value. |
-| long | readLong() | Reads eight input bytes and returns a long value. |
-| short | readShort() | Reads two input bytes and returns a short value. |
-| int | readUnsignedByte() | Reads one input byte, zero-extends it to type int, and returns the result, which is therefore in the range 0 through 255. |
-| int | readUnsignedShort() | Reads two input bytes and returns an int value in the range 0 through 65535. |
-| String | readUTF() | Reads in a string that has been encoded using a modified UTF-8 format. |
-| int | skipBytes(int n) | Makes an attempt to skip over n bytes of data from the input stream, discarding the skipped bytes. |
+| boolean | 	flush() | Reads one input byte and returns true if that byte is nonzero, false if that byte is zero. |
+| byte | 	size()  | Reads and returns one input byte. |
+| char | write(byte[] b, int off, int len)  | Reads two input bytes and returns a char value. |
+| double | write(int b)  | Reads eight input bytes and returns a double value. |
+| float | writeBoolean(boolean v)  | Reads four input bytes and returns a float value. |
+| void | writeBytes(String s)  | Reads some bytes from an input stream and stores them into the buffer array b. |
+| void | writeChar(int v)  | Reads len bytes from an input stream. |
+| int | writeChars(String s)  | Reads four input bytes and returns an int value. |
+| long | writeDouble(double v)  | Reads eight input bytes and returns a long value. |
+| short | writeFloat(float v)  | Reads two input bytes and returns a short value. |
+| int | writeInt(int v)  | Reads one input byte, zero-extends it to type int, and returns the result, which is therefore in the range 0 through 255. |
+| int | 	writeLong(long v)  | Reads two input bytes and returns an int value in the range 0 through 65535. |
+| String | writeShort(int v) | Reads in a string that has been encoded using a modified UTF-8 format. |
+| int | writeUTF(String str)  | Makes an attempt to skip over n bytes of data from the input stream, discarding the skipped bytes. |
  
 ```
 boolean isEOF=false;
