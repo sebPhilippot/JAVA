@@ -98,10 +98,10 @@ La lecture se fait avec les méthodes suivantes :
 
 | Valeur de retour | Nom de la méthode | Description |
 | --- | --- | --- |
-| boolean | 	flush() |           Flushes this data output stream. |
-| byte | 	size()  | Reads and returns one input byte. |
-| char | write(byte[] b, int off, int len)  | Reads two input bytes and returns a char value. |
-| double | write(int b)  | Reads eight input bytes and returns a double value. |
+| boolean | 	flush() | Flushes this data output stream. |
+| byte | 	size()  |Returns the current value of the counter written, the number of bytes written to this data output stream so far. |
+| char | write(byte[] b, int off, int len)  | Writes len bytes from the specified byte array starting at offset off to the underlying output stream. |
+| double | write(int b)  | Writes the specified byte (the low eight bits of the argument b) to the underlying output stream. |
 | float | writeBoolean(boolean v)  | Reads four input bytes and returns a float value. |
 | void | writeBytes(String s)  | Reads some bytes from an input stream and stores them into the buffer array b. |
 | void | writeChar(int v)  | Reads len bytes from an input stream. |
