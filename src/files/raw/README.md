@@ -35,8 +35,7 @@ La lecture se fait avec les méthodes suivantes :
 
 | Valeur de retour | Nom de la méthode | Description |
 | --- | --- | --- |
-| boolean | readBoolean() | Reads one input byte and returns true if that byte is nonzero, false if that byte is zero.
- |
+| boolean | readBoolean() | Reads one input byte and returns true if that byte is nonzero, false if that byte is zero. |
 | byte | readByte() | Reads and returns one input byte. |
 | char | readChar() | Reads two input bytes and returns a char value. |
 | double | readDouble() | Reads eight input bytes and returns a double value. |
