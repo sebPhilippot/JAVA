@@ -98,20 +98,20 @@ La lecture se fait avec les méthodes suivantes :
 
 | Valeur de retour | Nom de la méthode | Description |
 | --- | --- | --- |
-| boolean | 	flush() | Flushes this data output stream. |
-| byte | 	size()  |Returns the current value of the counter written, the number of bytes written to this data output stream so far. |
-| char | write(byte[] b, int off, int len)  | Writes len bytes from the specified byte array starting at offset off to the underlying output stream. |
-| double | write(int b)  | Writes the specified byte (the low eight bits of the argument b) to the underlying output stream. |
-| float | writeBoolean(boolean v)  | Writes a boolean to the underlying output stream as a 1-byte value. |
+| void | 	flush() | Flushes this data output stream. |
+| void | 	size()  |Returns the current value of the counter written, the number of bytes written to this data output stream so far. |
+| void | write(byte[] b, int off, int len)  | Writes len bytes from the specified byte array starting at offset off to the underlying output stream. |
+| void | write(int b)  | Writes the specified byte (the low eight bits of the argument b) to the underlying output stream. |
+| void | writeBoolean(boolean v)  | Writes a boolean to the underlying output stream as a 1-byte value. |
 | void | writeBytes(String s)  | Writes out the string to the underlying output stream as a sequence of bytes. |
-| void | writeChar(int v)  | Reads len bytes from an input stream. |
-| int | writeChars(String s)  | Reads four input bytes and returns an int value. |
-| long | writeDouble(double v)  | Reads eight input bytes and returns a long value. |
-| short | writeFloat(float v)  | Reads two input bytes and returns a short value. |
-| int | writeInt(int v)  | Reads one input byte, zero-extends it to type int, and returns the result, which is therefore in the range 0 through 255. |
-| int | 	writeLong(long v)  | Reads two input bytes and returns an int value in the range 0 through 65535. |
-| String | writeShort(int v) | Reads in a string that has been encoded using a modified UTF-8 format. |
-| int | writeUTF(String str)  | Makes an attempt to skip over n bytes of data from the input stream, discarding the skipped bytes. |
+| void | writeChar(int v)  |  Writes a char to the underlying output stream as a 2-byte value, high byte first.. |
+| void | writeChars(String s)  | Writes a string to the underlying output stream as a sequence of characters. |
+| void | writeDouble(double v)  | Converts the double argument to a long using the doubleToLongBits method in class Double, and then writes that long value to the underlying output stream as an 8-byte quantity, high byte first. |
+| void | writeFloat(float v)  |  Converts the float argument to an int using the floatToIntBits method in class Float, and then writes that int value to the underlying output stream as a 4-byte quantity, high byte first. |
+| void | writeInt(int v)  | Writes an int to the underlying output stream as four bytes, high byte first. |
+| void | 	writeLong(long v)  | Writes a long to the underlying output stream as eight bytes, high byte first. |
+| void | writeShort(int v) | Writes a short to the underlying output stream as two bytes, high byte first. |
+| void | writeUTF(String str)  |  Writes a string to the underlying output stream using modified UTF-8 encoding in a machine-independent manner.. |
  
 ```
 boolean isEOF=false;
