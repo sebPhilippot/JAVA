@@ -33,6 +33,8 @@ while(!isEOF){
 Dans le code ci-dessus on déclare une variable a false, tant que cette variable est fausse on essaye de lire le fichier, lorsque on sera à la fin du fichier il y aura le déclenchement de l'exception et la variable deviendra vraie, la boucle s'arrêtera et on aura finit de lire le fichier.
 La lecture se fait avec les méthodes suivantes : 
 
+| Valeur de retour | Nom de la méthode | Description |
+| --- | --- | --- |
 | boolean | readBoolean() | Reads one input byte and returns true if that byte is nonzero, false if that byte is zero.
  |
 | byte | readByte() | Reads and returns one input byte. |
