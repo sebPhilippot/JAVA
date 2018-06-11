@@ -98,7 +98,7 @@ La lecture se fait avec les méthodes suivantes :
 
 | Valeur de retour | Nom de la méthode | Description |
 | --- | --- | --- |
-| boolean | 	flush() | Reads one input byte and returns true if that byte is nonzero, false if that byte is zero. |
+| boolean | 	flush() |           Flushes this data output stream. |
 | byte | 	size()  | Reads and returns one input byte. |
 | char | write(byte[] b, int off, int len)  | Reads two input bytes and returns a char value. |
 | double | write(int b)  | Reads eight input bytes and returns a double value. |
