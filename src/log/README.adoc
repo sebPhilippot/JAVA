@@ -48,9 +48,9 @@ Il est également possible d'indiquer un autre fichier de configuration à la JV
 java -Djava.util.logging.config.file=src/log/logging.properties -cp bin com.example.Clock
 ```
 
-Le fichier `logging.properties` contient les instructions suivantes :
+Le fichier `logging.properties` contient un certain nombre d'instructions notables :
 
-- Le niveau de détail du journal pour différentes catégories de messages :
+Les propriétés se terminant par _.level_ permettent de spécifier le niveau de détail du journal pour différentes catégories de messages :
 
 ```
 com.example.foo.level=ALL
