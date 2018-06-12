@@ -67,52 +67,63 @@ while(!isEOF){
 
 ## Ecrire dans un fichier
 
-Pour  réaliser ce type d'écriture, nous utilisons la classe FileWriter. la documentation se trouve [ici](https://docs.oracle.com/javase/10/docs/api/java/io/FileOutputStream.html)
+FileOutputStream hérite de OutputStream et est dédiée à l'écriture des fichiers de données binaires.Comme dans le cas de la lecture, nous pouvons utiliser une classe DataOutputStream..
 
-La première étape est de créer une instance de cette classe : 
+`FileOutputStream fos=new FileOutputStream("fichier.dat");`
 
-  `FileOutputStream fw=new FileOutputStream("fichier.txt");`
+Ici on attache un fichier à un l'objet _fos_
 
-Cette classe a un constructeur déclaré comme ceci : 
+`DataOutputStream dos=new DataInputStream(fis);`
 
-`public FileOutputStream​(String name) throws FileNotFoundException`
-Ce qui oblige d'ajouter un block try/catch dans l'instanciation de cette classe. En effet, lorsque nous faisons `new FileOutputStream("copy.png");` nous faisons appel au constructeur ci-dessus.
+Ici, on attache l'objet _dos_ au fichier par l'intermédiaire de _fos_. On bénéficie alors des méthodes d'écritures plus évoluées de DataOutputStream pour écrire le fichier binaire.
 
-le code devient donc 
+> Si on souhaite écrire dans un fichier à l'aide d'un buffer il faut passer par une classe BufferedOutputStream. Cette classe prend un FileOutputStream en paramètre.C'est ce buffer qui sera passé en paramètre du DataOutputStream
+`new DataOutputStream(new BufferedOutputStream(new FileOutputStream(dataFile)));`
+
+L'objet _dos_ a maintenant la capacité d'écrire le fichier.
 
 ```
-try{
-FileOutputStream fos=new FileOutputStream("copy.png");
-}
-catch(IOExceptions ioex){
-  ioex.printStacktrace();
-}
-```
-La seconde étape consiste à insérer un tableau d'octet dans  cet objet. Ceci est rendu possible par l'appel à la méthode _write_ 
-
-Exemple :  récupération des données binaires d'une image
-```
-  File f =new File("java.png");
-  byte[] arrayByte = Files.readAllBytes(f.toPath());
-```
-Avec la méthode write sur l'objet arrayByte on fait une copie de l'image _java.png_
-`fos.write(arrayByte);`
-
-le code devient donc : 
-```
-FileOutputStream fos=null;
-try{
- File f =new File("java.png");
-  byte[] array = Files.readAllBytes(f.toPath());
-  fos=new FileOutputStream("copy.png");
-  fos.write(arrayByte);
-}
-catch(IOExceptions ioex){
-  ioex.printStacktrace();
-}finally{
-  try {
-    fos.close();
-   } catch (IOException ex) {
-        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+boolean isEOF=false;
+while(!isEOF){
+  try{
+      //Lecture du fichier   
+  }catch(EOFExcetpion eofex){
+      isEOF=true;
    }
+}
+```
+
+Dans le code ci-dessus on déclare une variable a false, tant que cette variable est fausse on essaye de lire le fichier, lorsque on sera à la fin du fichier il y aura le déclenchement de l'exception et la variable deviendra vraie, la boucle s'arrêtera et on aura finit de lire le fichier.
+La lecture se fait avec les méthodes suivantes : 
+
+| Valeur de retour | Nom de la méthode | Description |
+| --- | --- | --- |
+| void | 	flush() | Flushes this data output stream. |
+| void | 	size()  |Returns the current value of the counter written, the number of bytes written to this data output stream so far. |
+| void | write(byte[] b, int off, int len)  | Writes len bytes from the specified byte array starting at offset off to the underlying output stream. |
+| void | write(int b)  | Writes the specified byte (the low eight bits of the argument b) to the underlying output stream. |
+| void | writeBoolean(boolean v)  | Writes a boolean to the underlying output stream as a 1-byte value. |
+| void | writeBytes(String s)  | Writes out the string to the underlying output stream as a sequence of bytes. |
+| void | writeChar(int v)  |  Writes a char to the underlying output stream as a 2-byte value, high byte first.. |
+| void | writeChars(String s)  | Writes a string to the underlying output stream as a sequence of characters. |
+| void | writeDouble(double v)  | Converts the double argument to a long using the doubleToLongBits method in class Double, and then writes that long value to the underlying output stream as an 8-byte quantity, high byte first. |
+| void | writeFloat(float v)  |  Converts the float argument to an int using the floatToIntBits method in class Float, and then writes that int value to the underlying output stream as a 4-byte quantity, high byte first. |
+| void | writeInt(int v)  | Writes an int to the underlying output stream as four bytes, high byte first. |
+| void | 	writeLong(long v)  | Writes a long to the underlying output stream as eight bytes, high byte first. |
+| void | writeShort(int v) | Writes a short to the underlying output stream as two bytes, high byte first. |
+| void | writeUTF(String str)  |  Writes a string to the underlying output stream using modified UTF-8 encoding in a machine-independent manner.. |
+ 
+```
+boolean isEOF=false;
+int unit;
+String desc;
+while(!isEOF){
+  try{
+         unit = dis.readInt();
+        desc = dis.readUTF(); 
+        System.out.println("unit : "+unit+" desc : "+desc);
+ }catch(EOFExcetpion eofex){
+      isEOF=true;
+   }
+}
 ```
