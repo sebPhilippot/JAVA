@@ -26,7 +26,7 @@ La configuration du logger se fait à partir d'un fichier `logging.properties`. 
 Consultez votre fichier logging.properties pour plus d'informations. Il se trouve généralement dans le répertoire suivant :
 
 |===
-| OS | Chemin d'accès |
+| OS | Chemin d'accès
 
 | Windows 
 | `C:\Program Files\Java\*\lib`
