@@ -1,0 +1,109 @@
+= Journaliser l'exécution d'un programme
+
+Ce programme est un exemple d'utilisation des _loggers_ en Java. Il s'agit d'une horloge qui affiche la date et l'heure en continu. Elle se lance comme ceci :
+
+```
+java com.example.Clock
+```
+
+== Initialiser un logger
+
+L'écriture de messages dans un journal se fait au moyen un objet de la classe https://docs.oracle.com/javase/7/docs/api/java/util/logging/Logger.html[Logger]. Il s'obtient en faisant appel à la _Factory Method_ statique de la classe `Logger` :
+
+[source, java]
+----
+private static final Logger logger = Logger.getLogger("com.example.Clock");
+----
+
+L'argument passé à `getLogger` est un identifiant utilisé pour catégoriser les messages produits par l'application. Il accompagne les messages sous forme de préfixe ou de métadonnée. Généralement, il correspond au nom _complet_ (c'est-à-dire précédé du nom du package) de la classe dans laquelle se trouve le logger.
+
+La configuration du logger se fait à partir d'un fichier `logging.properties`. Par défaut, c'est celui situé dans le dossier dans le sous-dossier `lib` du dossier d'installation de la JVM qui est utilisé. Sur la plupart des plateformes, la configuration par défaut écrit :
+
+- au format XML,
+- dans un fichier nommé java0.log situé dans le dossier personnel de l'utilisateur courant,
+- les messages de niveau INFO et supérieur
+
+Consultez votre fichier logging.properties pour plus d'informations. Il se trouve généralement dans le répertoire suivant :
+
+|===
+| OS | Chemin d'accès |
+
+| Windows 
+| `C:\Program Files\Java\*\lib`
+
+| Debian
+| `/usr/bin/jvm/*/lib`
+
+| CentOS
+| `/usr/bin/jvm/*/lib`
+
+| macOS
+| `/System/Library/Java/JavaVirtualMachines/*/Contents/Home/lib`
+
+|===
+
+Il est également possible d'indiquer un autre fichier de configuration à la JVM à l'aide de l'option `-Djava.util.logging.config.file`. Pour utiliser le fichier de configuration fourni avec cet exemple, lancez la commande suivante depuis la racine du projet :
+
+```
+java -Djava.util.logging.config.file=src/log/logging.properties -cp bin com.example.Clock
+```
+
+Le fichier `logging.properties` contient les instructions suivantes :
+
+- Le niveau de détail du journal pour différentes catégories de messages :
+
+```
+com.example.foo.level=ALL
+com.example.foo.bar.level=WARN
+com.example.baz.level=SEVERE
+```
+
+Il est à noter que, sauf surcharge par une autre instruction, le niveau de détail d'une catégorie s'appliquera récursivement à toutes les sous-catégories qu'elle englobe. Par exemple les classes dans le package `com.example.baz.qux` n'émettront que les messages de niveau SEVERE.
+
+L'instruction `.level` permet de modifier le niveau de détail de la catégorie racine, qui s'appliquera par défaut :
+
+```
+.level=INFO
+```
+
+La propriété `handlers` permet de configurer la façon dont les messages sont produits (sortie standard, fichier, journaux système...) : 
+
+```
+handlers=java.util.logging.FileHandler, java.util.logging.ConsoleHandler
+```
+
+== Utiliser un logger
+En fonction de l'imporance du message la classe https://docs.oracle.com/javase/7/docs/api/java/util/logging/Logger.html[Logger] possède 4 méthodes principales pour écrire dans le journal :
+
+- fine
+- info
+- warning
+- severe
+
+La méthode `fine` sert à enregistrer des messages et informations de débug :
+
+[source, java]
+----
+logger.fine("Page mise en cache : " + e);
+----
+
+La méthode `info` sert à tracer le cours normal de l'exécution d'un programme :
+
+[source, java]
+----
+logger.info("Serveur démarré");
+----
+
+La méthode `warning` sert à informer d'une situation inhabituelle qui pourrait indiquer une erreur mais n'empêche pas le fonctionnement du programme :
+
+[source, java]
+----
+logger.warn("Connexion au serveur FTP imposible, les résultats seront stockés en local");
+----
+
+La méthode `severe` sert à signaler une erreur ou une situation qui empêche le programme de poursuivre le cours normal de son exécution :
+[source, java]
+----
+logger.severe("Erreur d'accès au fichier de sortie");
+----
+
