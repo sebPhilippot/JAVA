@@ -78,7 +78,7 @@ argList.stream().
 	forEach(e -> System.out.print(e + " "));
 ----
 
-Il s'agit de la façon recommandée de parcourir une liste dans les projets Java récents s'exécutant dans des environnements modernes (JVM version 1.8 et supérieures); elle permet la lecture et la manipulation en parallèle des éléments de la liste. S'il est nécessaire de modifier structurellement la liste en cours d'itération (supprimer ou ajouter des éléments tout en parcourant la liste), il faut utiliser un itérateur (voir ci-dessous).
+Il s'agit de la façon recommandée de parcourir une liste dans les projets Java récents s'exécutant dans des environnements modernes (JVM version 1.8 et supérieures); elle permet la lecture et la manipulation en parallèle des éléments de la liste. S'il est nécessaire de modifier structurellement la liste en cours d'itération (supprimer ou ajouter des éléments tout en parcourant la liste), il faut utiliser un itérateur (voir plus bas).
 
 === Boucle for implicite
 Cette méthode est disponible à partir de la version 1.5 du langage. On parcourt la liste élément par élément à l'aide d'une _enhanced for loop_ :
