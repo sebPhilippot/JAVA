@@ -24,6 +24,7 @@ et ne conserver que le dernier chiffre du résultat.
 == Créer une liste
 
 En Java, une liste est une instance d'une classe qui implémente l'interface `java.util.List`. Les implémentations les plus utilisées sont https://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html[ArrayList] et https://docs.oracle.com/javase/7/docs/api/java/util/LinkedList.html[LinkedList] :
+
 - ArrayList dispose d'une implémentation performante des méthodes `get`, `set` et `add`
 - LinkedList implémente également l'interface https://docs.oracle.com/javase/7/docs/api/java/util/Deque.html[Deque] : elle est à préférer lorsque les opérations de _stack_ et de _queue_ sont utiles : `addFirst`, `getLast`...
 
