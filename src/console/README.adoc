@@ -59,9 +59,9 @@ On peut récupérer ces informations dans des variables séparées à l'aide du 
 [source, java]
 ----
 Scanner stdin = new Scanner(System.in);
-int age = nextInt();
-String sexe = next();
-String ville = next();
+int age = stdin.nextInt();
+String sexe = stdin.next();
+String ville = stdin.next();
 ----
 
 Le paramètre passé au constructeur de la classe `Scanner` permet d'indiquer la source de données. Généralement, il s'agira de `System.in`.
